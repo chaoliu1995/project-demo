@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}" type="text/javascript"></script>
+</head>
+<body>
+    <h1>index</h1>
+    <button type="button" id="addUserBtn">测试数据库是否联通</button>
+<script type="text/javascript" th:inline="javascript">
+
+    $("#addUserBtn").click(function () {
+        $.post("/user/add",function (data) {
+            alert(data);
+        });
+    });
+
+</script>
+</body>
+</html>

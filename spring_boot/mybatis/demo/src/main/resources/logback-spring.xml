@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="300 second" debug="false">
+    <property name="APP_NAME" value="demo" />
+    <contextName>${APP_NAME}</contextName>
+    <property name="LOG_HOME" value="C:\\logs\\demo\\" />
+    <property name="defaultMaxFileSize" value="100MB" />
+    <property name="defaultMaxHistory" value="30" />
+    <property name="defaultCharset" value="UTF-8" />
+
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <charset>${defaultCharset}</charset>
+        </encoder>
+    </appender>
+
+    <appender name="INFO_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${LOG_HOME}${APP_NAME}.info.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- 每天生成一个日志文件，保存30天的日志文件
+            - 如果隔一段时间没有输出日志，前面过期的日志不会被删除，只有再重新打印日志的时候，会触发删除过期日志的操作。
+            -->
+            <fileNamePattern>${LOG_HOME}${APP_NAME}.info.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxHistory>${defaultMaxHistory}</maxHistory>
+            <maxFileSize>${defaultMaxFileSize}</maxFileSize>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%5level] [%thread] %logger{0} %msg%n</Pattern>
+            <charset>${defaultCharset}</charset>
+        </encoder>
+    </appender>
+    <logger name="com.chaoliu1995.demo.mapper" level="DEBUG" additivity="false">
+        <appender-ref ref="INFO_LOG" />
+        <appender-ref ref="Console" />
+    </logger>
+    <logger name="org.springframework" level="INFO">
+        <appender-ref ref="INFO_LOG" />
+        <appender-ref ref="Console" />
+    </logger>
+    <logger name="com.chaoliu1995.demo" level="INFO">
+        <appender-ref ref="INFO_LOG" />
+        <appender-ref ref="Console" />
+    </logger>
+    <logger name="com.mysql" level="INFO">
+        <appender-ref ref="INFO_LOG" />
+        <appender-ref ref="Console" />
+    </logger>
+    <logger name="org.thymeleaf" level="INFO">
+        <appender-ref ref="INFO_LOG" />
+        <appender-ref ref="Console" />
+    </logger>
+    <root>
+        <level value="INFO" />
+    </root>
+</configuration>

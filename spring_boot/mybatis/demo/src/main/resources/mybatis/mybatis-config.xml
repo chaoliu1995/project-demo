@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="jdbcTypeForNull" value="NULL" />
+        <setting name="logImpl" value="SLF4J" />
+    </settings>
+    <typeAliases>
+        <typeAlias type="java.lang.Integer" alias="Integer"/>
+        <package name="com.chaoliu1995.demo.dto"  />
+    </typeAliases>
+</configuration>
