@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="300 second" debug="true">
+	<property name="APP_NAME" value="demo" />
+	<contextName>${APP_NAME}</contextName>
+	<property name="defaultCharset" value="UTF-8" />
+	<appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+			<charset>${defaultCharset}</charset>
+		</encoder>
+	</appender>
+	
+	
+    <logger name="org.springframework" level="INFO" additivity="false">
+    	<appender-ref ref="Console" />
+    </logger>
+    
+    <logger name="org.thymeleaf.*">
+    	<appender-ref ref="Console" />
+    </logger>
+    
+    <logger name="com.chaoliu1995.demo.*">
+    	<appender-ref ref="Console" />
+    </logger>
+   
+    <root>
+    	<level value="INFO" />
+    </root>
+</configuration>
