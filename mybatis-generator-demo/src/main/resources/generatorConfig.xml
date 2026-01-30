@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "https://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="MySqlTables"
+             targetRuntime="MyBatis3"
+    >
+        <!--<plugin type="org.mybatis.generator.plugins.dsql.DisableDeletePlugin" />
+        <plugin type="org.mybatis.generator.plugins.dsql.DisableUpdatePlugin" />-->
+        <plugin type="com.example.demo.CustomMethodPlugin" />
+        <plugin type="org.mybatis.generator.plugins.dsql.ReadOnlyPlugin" />
+        <plugin type="com.example.demo.BatchInsertPlugin" />
+        <plugin type="com.example.demo.MapperAnnotationPlugin" />
+        <plugin type="com.example.demo.SelectByYearMonthPlugin" />
+        <plugin type="com.example.demo.SelectAllYearMonthPlugin" />
+        <plugin type="com.example.demo.CountPlugin" />
+        <plugin type="com.example.demo.CustomEntityImplementPlugin" />
+
+        <commentGenerator>
+            <!-- 禁用所有注释（包括类注释、属性注释、方法注释），优先级更高 -->
+            <property name="suppressAllComments" value="true"/>
+
+            <!-- 仅禁用列/属性注释（推荐，保留类注释等其他有用注释） -->
+            <!--<property name="suppressColumnComments" value="true"/>-->
+
+            <!-- 关闭注释中的日期戳（默认生成生成时间） -->
+            <!--<property name="addRemarkComments" value="false"/>-->
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/db_test?useSSL=false&amp;serverTimezone=Asia/Shanghai"
+                        userId="root"
+                        password="123456">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.example.app.model" targetProject="D:\git_repo\project1\src\main\java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mapper"  targetProject="D:\git_repo\project1\src\main\resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.app.mapper"  targetProject="D:\git_repo\project1\src\main\java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!--
+        <table schema="DB2ADMIN" tableName="ALLTYPES" domainObjectName="Customer" >
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="ID" sqlStatement="DB2" identity="true" />
+            <columnOverride column="DATE_FIELD" property="startDate" />
+            <ignoreColumn column="FRED" />
+            <columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+        </table>
+        -->
+
+        <table tableName="t_user" domainObjectName="User" />
+    </context>
+</generatorConfiguration>
